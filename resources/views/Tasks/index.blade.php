@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>Tasks list</title>
+    {{-- REVIEW: refactor --}}
+    {{-- Luôn bắt đầu bằng / nếu không khai báo base tag https://www.w3schools.com/tags/tag_base.asp --}}
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {{-- REVIEW: refactor --}}
+    {{-- Không dùng đường dẫn tương đối --}}
+    {{-- Hãy bắt đầu bằng / nếu lưu tại local server nếu không hãy dùng hàm asset('/path/to/index.css') --}}
     <link rel="stylesheet" href="../../css/tasks/index.css"/>
 </head>
 
 <body>
 <style>
+    /* REVIEW: refactor */
+    /* Nên viết trong file css */
+    /* KHÔNG NÊN style với selector id (#) mà hãy đặt tên class và style với selector class (.) */
+    /* ID selector (#) chỉ nên dùng khi làm việc với js */
     #list1 .form-control {
         border-color: transparent;
     }
@@ -51,6 +60,12 @@
                         <form id="filterForm" method="GET" action="{{ route('tasks.index') }}">
                             <div class="d-flex justify-content-end align-items-center mb-4 pt-2 pb-3">
                                 <p class="small mb-0 me-2 text-muted">Quantity</p>
+                                {{-- REVIEW: refactor --}}
+                                {{-- Đoạn code document.getElementById('filterForm').submit() bị lặp --}}
+                                {{-- Có thể sử dụng class và thẻ script để tránh lặp code --}}
+                                {{-- VD: đặt tên class là element-change-submit và dùng script sau --}}
+                                {{-- <script>document.querySelectorAll('.element-change-submit').forEach((ele)=>ele.addEventListener("change", document.getElementById('filterForm').submit()))</script> --}}
+                                {{-- Như vậy bất kỳ thành phần element nào có class tên như trên mà kích hoạt event onchange thì sẽ submit form filter --}}
                                 <select class="select" name="quantity"
                                         onchange="document.getElementById('filterForm').submit()">
                                     <option value="5" {{ request('quantity') == 5 ? 'selected' : '' }}>5</option>
@@ -108,9 +123,13 @@
                                             <th>Create Date</th>
                                             <th>End Date</th>
                                             <th>Status</th>
+                                            {{-- REVIEW: missing --}}
+                                            {{-- Bổ sung 1 thẻ th sẽ giúp giao diện trông không bị `ngố tàu` --}}
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {{-- REVIEW: refactor --}}
+                                        {{-- Cân nhắc dùng @forelse cùng @empty để hiển thị thông báo không có task nào. Tránh để bảng trống --}}
                                         @foreach($tasks as $task)
                                             <tr>
                                                 <td>{{ $task->title }}</td>

@@ -22,6 +22,14 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // REVIEW: security
+            // Nếu người dùng truyền nên 1 mảng dữ liệu thì hệ thống có xử lý được không?
+            // Hãy thêm các rule khác để chắc chắn rằng ứng dụng sẽ nhận được các dữ liệu mong muốn
+            // Tham khảo: 'title' => 'required|string|min:3|max:255'
+            // - Bắt buộc có dữ liệu
+            // - Phải là 1 chuỗi ký tự
+            // - Có tối thiểu 3 ký tự
+            // - Có nhiều nhất 255 ký tự
             'title' => 'required',
             'description' => 'required'
         ];

@@ -66,6 +66,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            // REVIEW: Không cần thiết
+            // Em để ý tại app/Models/User.php:44 password có cast là hashed cho nên khi em lưu vào database nó sẽ tự hash cho em nên không cần phải hash trước nhé
             'password' => Hash::make($data['password']),
         ]);
     }

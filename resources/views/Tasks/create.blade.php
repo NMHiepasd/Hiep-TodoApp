@@ -66,6 +66,8 @@
         crossorigin="anonymous"></script>
 
 <script>
+    /*REVIEW: refactor*/
+    /*Có thể dùng attribute html min thay thế cho đoạn code này được không? */
     document.addEventListener('DOMContentLoaded', (event) => {
         const createDateInput = document.getElementById('taskCreateDate');
         const today = new Date().toISOString().split('T')[0];

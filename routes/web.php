@@ -14,15 +14,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// REVIEW: refactor
+// Thừa code khi dùng với Route::resource()
 Route::get('/edit-task', function () {
     return view('Tasks.edit');
 });
 
 
+// REVIEW: refactor
+// Thừa code khi dùng với Route::resource()
 Route::get('/task', [TaskController::class, 'index']);
 
 Route::resource('/tasks', TaskController::class);
 
+// REVIEW: missing method
+// Không có method updateStatus
 Route::get('/tasks/{task}/updateStatus', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 
 
