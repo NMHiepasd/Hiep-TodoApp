@@ -1,4 +1,7 @@
 {
+    /* REVIEW: ???*/
+    /* Tại sao lại ra cấu trúc như thế này? */
+    /* Không có script nào để bundle các file assets với vite? */
     "name": "sphoton",
     "lockfileVersion": 3,
     "requires": true,
